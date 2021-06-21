@@ -19,16 +19,16 @@ ssc install veracrypt
 
 */
 
-*To start we're setting a local to identify the path to our github folder. You'll
+*To start we're setting a global to identify the path to our github folder. You'll
 *need to enter your own path to whereever you save these files.
 
-local dir "C:\Users\Josh\Documents"
+global dir "C:\Users\Josh\Documents"
 
 // DOWNLOADING AND SAVING DATA
 
 *We begin by mounting the container that we've created and saved in our data file 
 
-cd "`dir'\github\do_veracrypt\data"
+cd "$dir\github\do_veracrypt\data"
 
 veracrypt container, mount drive(M)
 
@@ -64,7 +64,7 @@ the container. If you don't do this, you'll get the following message: "Volume
 contains files or folders being used by applications or system. Force dismount?"
 */
 
-cd "`dir'\github\do_veracrypt\data"
+cd "$dir\github\do_veracrypt\data"
 
 veracrypt, dismount drive(M)
 
@@ -74,7 +74,7 @@ veracrypt, dismount drive(M)
 *veracrypt container, we'll mount this again, open the data, modify it, and then 
 *save it back to the container.
 
-cd "`dir'\github\do_veracrypt\data"
+cd "$dir\github\do_veracrypt\data"
 
 veracrypt container, mount drive(M)
 
@@ -89,7 +89,12 @@ save "covid.dta", replace
 *We're done. The dataset in the container now only includes the three variables 
 *that we've kept. Now we'll dismount the drive.
 
-cd "`dir'\github\do_veracrypt\data"
+
+*Now to illustrate how to work with data that has already been saved within a 
+*veracrypt container, we'll mount this again, open the data, modify it, and then 
+*save it back to the container.
+
+cd "$dir\github\do_veracrypt\data"
 
 veracrypt, dismount drive(M)
 
